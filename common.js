@@ -8,19 +8,24 @@ function validate(pace){
 		return {"status":0,"message":msg,"hour":0,"min":0};
 	}
 }
+function peaceCal(pace,dist){
+	var min = dist * pace;
+	var hour = 0;
+	if (min > 60){
+		hour = Math.floor(min / 60);
+		min = min%60;
+	}
+	return {"min":min , "hour":hour};
+}
 function calculate(p,d){
 		var msg = "";
 		var pace = parseFloat(p);
 		var dist = parseInt(d);
 	//---------------------------
-		
+		var chk = validate(pace);
+		if(hk != null) return chk;
 	//---------------------------
-		var min = dist * pace;
-		var hour = 0;
-		if(min > 60){
-			hour = Math.floor(min / 60);          
-			min = min % 60;
-		}
+		var pc = peaceCal(pace,dist);
 	//---------------------------
 		msg = "successfully calculated!"
 		return {"status":1,"message":msg,"hour":hour,"min":min};
